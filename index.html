@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rajaraman and Wong 延迟导向聚类算法的中文教学视频、章节讲义与完整算例。">
+  <title>Rajaraman and Wong Algorithm 教学视频</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="返回页面开头">
+      <span class="brand-mark">RW</span>
+      <span>延迟导向聚类教学</span>
+    </a>
+    <nav aria-label="页面导航">
+      <a href="#video">视频</a>
+      <a href="#outline">学习路线</a>
+      <a href="#materials">配套材料</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="intro">
+      <div class="intro-copy">
+        <p class="eyebrow">EST8717 Lecture 5 · Clustering</p>
+        <h1>Rajaraman and Wong Algorithm</h1>
+        <p class="lead">从问题定义、延迟模型到三个执行阶段，再用一个完整算例走通延迟导向聚类。</p>
+        <div class="intro-actions">
+          <a class="button primary" href="#video"><span aria-hidden="true">▶</span> 开始学习</a>
+          <a class="button secondary" href="docs/algorithm-notes.md">阅读讲义</a>
+        </div>
+      </div>
+      <dl class="course-facts">
+        <div>
+          <dt>视频时长</dt>
+          <dd>13:52</dd>
+        </div>
+        <div>
+          <dt>画面规格</dt>
+          <dd>1080p</dd>
+        </div>
+        <div>
+          <dt>讲解语言</dt>
+          <dd>普通话</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="video-section" id="video">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">完整教学视频</p>
+          <h2>先看整体流程，再逐步推演算例</h2>
+        </div>
+        <a class="text-link" href="media/Rajaraman_Wong_Algorithm_Teaching_Video.mp4" download>下载 MP4</a>
+      </div>
+      <div class="video-shell">
+        <video id="teaching-video" controls preload="metadata" poster="assets/cover.png">
+          <source src="media/Rajaraman_Wong_Algorithm_Teaching_Video.mp4" type="video/mp4">
+          你的浏览器不支持 MP4 视频播放。
+        </video>
+      </div>
+    </section>
+
+    <section class="outline-section" id="outline">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">章节导航</p>
+          <h2>按知识点跳转</h2>
+        </div>
+        <p class="section-note">点击任一章节，可从对应位置继续播放。</p>
+      </div>
+      <ol class="chapter-list" id="chapter-list"></ol>
+    </section>
+
+    <section class="learning-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">学习目标</p>
+          <h2>看完后应能独立解释什么</h2>
+        </div>
+      </div>
+      <div class="goal-grid">
+        <article>
+          <span class="goal-index">01</span>
+          <h3>描述问题</h3>
+          <p>说明 PI 到 PO 最大路径延迟的优化目标，以及簇大小和节点复制的意义。</p>
+        </article>
+        <article>
+          <span class="goal-index">02</span>
+          <h3>执行算法</h3>
+          <p>按初始化、标记和聚类三个阶段，复现一个图中的标签与簇。</p>
+        </article>
+        <article>
+          <span class="goal-index">03</span>
+          <h3>解释取舍</h3>
+          <p>说明 `l1`、`l2` 和簇间延迟 D 如何影响结果，以及复制带来的延迟与面积权衡。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="materials-section" id="materials">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">配套材料</p>
+          <h2>视频之外的补充阅读</h2>
+        </div>
+      </div>
+      <div class="material-links">
+        <a href="docs/algorithm-notes.md">
+          <span>系统讲义</span>
+          <small>问题、公式、步骤、算例与易错点</small>
+        </a>
+        <a href="docs/narration.md">
+          <span>视频文字稿</span>
+          <small>逐页对照旁白内容</small>
+        </a>
+        <a href="docs/source-and-limitations.md">
+          <span>来源与限制</span>
+          <small>依据、内容边界与已知限制</small>
+        </a>
+        <a href="https://github.com/muranfei/rajaraman-wong-algorithm-teaching" id="repo-link">
+          <span>GitHub 仓库</span>
+          <small>查看完整源文件与更新记录</small>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Rajaraman and Wong Algorithm 中文教学项目</p>
+    <p>课程学习与教学展示用途</p>
+  </footer>
+
+  <script src="data/chapters.js"></script>
+  <script>
+    const video = document.querySelector("#teaching-video");
+    const chapterList = document.querySelector("#chapter-list");
+
+    window.CHAPTERS.forEach((chapter, index) => {
+      const item = document.createElement("li");
+      const button = document.createElement("button");
+      const number = document.createElement("span");
+      const copy = document.createElement("span");
+      const title = document.createElement("strong");
+      const time = document.createElement("small");
+
+      button.type = "button";
+      number.className = "chapter-number";
+      number.textContent = String(index + 1).padStart(2, "0");
+      title.textContent = chapter.title;
+      time.textContent = chapter.startLabel;
+      copy.append(title, time);
+      button.append(number, copy);
+      button.addEventListener("click", () => {
+        video.currentTime = chapter.start;
+        video.play();
+        video.focus();
+      });
+      item.append(button);
+      chapterList.append(item);
+    });
+  </script>
+</body>
+</html>
